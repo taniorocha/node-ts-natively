@@ -15,9 +15,16 @@ interface Result<T> {
     data: T;
 }
 
+// TypeScript enum is not supported in strip-only mode
+// enum UserType {
+//     Admin = 1,
+//     Default = 2
+// }
+
 interface User {
     name: string;
     password: string;
+    // type: UserType // TypeScript enum is not supported in strip-only mode
 }
 
 function setResult<T>(data: T): Result<T> {
@@ -30,7 +37,8 @@ function setResult<T>(data: T): Result<T> {
 function getUser(): User[] {
     const user: User = {
         name: "Juremildo",
-        password: "123"
+        password: "123",
+        // type: UserType.Admin // TypeScript enum is not supported in strip-only mode
     };
     return [user];
 }
