@@ -1,13 +1,3 @@
-
-// *****
-// **
-
-// Testing new released node version 22.11.0 witch came with typescript natively \o/
-
-// **
-// *****
-
-
 import { createServer } from 'node:http';
 
 interface Result<T> {
@@ -72,5 +62,5 @@ function getUserData(req: any, res: any) {
 }
 
 server.listen(3000, '127.0.0.1', () => {
-    console.log('Listening on 127.0.0.1:3000');
+    console.log('Listening on http://127.0.0.1:3000');
 });
