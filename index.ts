@@ -40,7 +40,8 @@ const server = createServer(async (req: any, res: any) => {
         teste = `Api request gotten at: ${new Date().toJSON()}`;
         console.log(teste);
 
-        if(req.url === "/user" && req.method === "GET") return getUserData(req, res);
+        if(req.url === "/user" && req.method === "GET") 
+            return await getUserData(req, res);
         else {
             res.writeHead(404, { 'Content-Type': 'application/json' });
             res.end(`{"status": 404,"error": "Route not found" }`);
@@ -52,12 +53,15 @@ const server = createServer(async (req: any, res: any) => {
     }
 });
 
-function getUserData(req: any, res: any) {
+async function getUserData(req: any, res: any) {
     var users = getUser();
     // users[2].name = '1'; // force exception
 
-    res.writeHead(200, { 'Content-Type': 'application/json' });
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
     const result = setResult(users);
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(result));
 }
 
